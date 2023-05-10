@@ -1,0 +1,59 @@
+.custom-select {
+  &__control {
+    background-color: $backgroundMain !important;
+    border: 0.1rem solid $backgroundExtraLight !important;
+    box-shadow: none !important;
+    border-radius: 1.4rem !important;
+    font-weight: 400 !important;
+    font-size: 1.4rem !important;
+    line-height: 1.6rem !important;
+
+    &--menu-is-open {
+      border: 0.1rem solid $accentFocused !important;
+      border-bottom: none !important;
+      border-radius: 1.4rem 1.4rem 0 0 !important;
+    }
+  }
+
+  &__value-container {
+    padding: 1.2rem 2rem !important;
+  }
+
+  &__input-container {
+    color: $accentMain !important;
+  }
+
+  &--menu-is-open {
+    border-color: red !important;
+  }
+
+  &__indicator-separator {
+    display: none !important;
+  }
+
+  &__indicators {
+    cursor: pointer !important;
+  }
+
+  &__menu {
+    background-color: $backgroundMain !important;
+    color: $contentMain !important;
+    border: 0.1rem solid $accentFocused !important;
+    border-top: none !important;
+    //box-shadow: 0 0 0 0.1rem $accentFocused !important;
+    margin-top: 0 !important;
+    border-radius: 0 0 1.4rem 1.4rem !important;
+  }
+
+  &__option {
+    cursor: pointer !important;
+    font-size: 1.4rem !important;
+    line-height: 1.6rem !important;
+    padding: 1.5rem 2rem !important;
+    border-right: none !important;
+    border-left: none !important;
+    &--is-focused {
+      background-color: $domLight !important;
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use "sass:math";
+
+$containerWidth: 1440;
+$containerPadding: 30;
+$containerSidePadding: math.div($containerPadding, 2);
+$breakpoint1450: 1449.98 + px;
+$breakpoint1200: 1199.98 + px;
+$breakpoint992: 991.98 + px;
+$breakpoint768: 767.98 + px;
+$breakpoint480: 479.98 + px;
+
+//$fontSize: 16px; // где 16(px) - размер шрифта по умолчанию из макета
+
+// Colors
+$contentMain: #201c1d; // Цвет шрифта по умолчанию
+$contentSecondary: #7c7778;
+$contentDop: #afacac;
+$contentLight: #ede8e8;
+$contentFocused: #151414;
+$backgroundExtraLight: #f7f5f5;
+$backgroundMain: #fcfcfc;
+$backgroundSecondary: #f7f7f7;
+$accentMain: #7e64e8;
+$accentFocused: #331990;
+$domLight: #f5e9ea;
+
+// Gradients background
+$gradientMain: linear-gradient(
+  131.29deg,
+  #6a94ff 5.12%,
+  #6762ff 52.07%,
+  #6523d7 100%
+);
+
+$gradientLight: linear-gradient(180deg, #fcfafa 0%, #faf7f8 100%);
+
+$outlineFocus: 0 0 0 0.3rem rgba(44, 63, 170, 0.5);
+
+// Gradient font
+%gradient-font {
+  background-image: $gradientMain;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+// Fonts
+$fontMain: sans-serif;
+$fontSecondary: sans-serif;

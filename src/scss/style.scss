@@ -1,0 +1,20 @@
+@use "sass:math";
+
+@import "vars";
+@import "./reset";
+@import "./libs";
+@import "./global";
+
+// Подключение стилей общих компонентов
+//@import '../components/Button/button';
+
+// Подключения стилей компонентов отдельных страниц
+
+@import "../components/Dashboard/EditForm/edit-form";
+@import "../components/Dashboard/CustomSelect/custom-select";
+@import "../components/Dashboard/Modal/modal";
+@import "../components/Overlay/overlay";
+
+// Подключение дополнительных уникальных стилей страниц
+
+@import "blocks/meeting";

@@ -1,0 +1,62 @@
+.header {
+  background: $backgroundMain;
+  min-height: 7.1rem;
+
+  border: 0.1rem solid $backgroundExtraLight;
+
+  &__inner {
+    padding: 1.2rem 0;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .account__name {
+    display: none;
+  }
+
+  /*   .header__search {
+    display: none;
+  } */
+
+  .header__language {
+    display: none;
+  }
+
+  &__button {
+    min-width: 17.2rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    padding: 1.5rem 2rem;
+    background: $accentMain;
+  }
+}
+
+@media (min-width: $breakpoint768) {
+  .header {
+    .account__name {
+      display: block;
+    }
+
+    /*  .header__search {
+      display: block;
+    } */
+
+    .header__language {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: $breakpoint1200) {
+  .header {
+    background: $backgroundSecondary;
+    /*    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0; */
+  }
+}
