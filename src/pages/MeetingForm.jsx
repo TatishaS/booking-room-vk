@@ -15,11 +15,15 @@ const DropdownIndicator = (props) => {
   );
 };
 
+const bookingItems = [];
+
 const MeetingForm = () => {
   const [editFormData, setEditFormData] = React.useState({
     tower: "",
     floor: "",
+    description: "",
   });
+  const [items, setItems] = React.useState([]);
 
   const getSelectTowerValue = () => {
     return editFormData.tower
@@ -37,7 +41,37 @@ const MeetingForm = () => {
     setEditFormData({
       tower: "",
       floor: "",
+      description: "",
     });
+  };
+
+  const handleClickAddBooking = (event) => {
+    event.preventDefault();
+
+    if (editFormData.tower && editFormData.floor) {
+      const newItem = {
+        id: items.length + 1,
+        tower: editFormData.tower,
+        floor: editFormData.floor,
+        description: editFormData.description,
+      };
+
+      try {
+        setItems((prev) => [...prev, newItem]);
+      } catch (error) {
+        console.error(error);
+        alert("ОШИБКА ПРИ ДОБАВЛЕНИИ ДАННЫХ" + error);
+      }
+
+      setEditFormData({
+        id: 0,
+        tower: "",
+        floor: "",
+        description: "",
+      });
+    } else {
+      alert("Заполните все поля");
+    }
   };
 
   return (
@@ -62,15 +96,15 @@ const MeetingForm = () => {
               </div>
 
               <section className="meeting__edit-form">
-                <div className="edit-form__btn-wrapper">
-                  <button
-                    className="edit-form__button cancel"
-                    onClick={handleClearForm}
-                  >
-                    Очистить
-                  </button>
-                </div>
-                <form className="edit-form">
+                <form className="edit-form" onSubmit={handleClickAddBooking}>
+                  <div className="edit-form__btn-wrapper">
+                    <button
+                      className="edit-form__button cancel"
+                      onClick={handleClearForm}
+                    >
+                      Очистить
+                    </button>
+                  </div>
                   <div className="edit-form__row">
                     <label htmlFor="tower" className="edit-form__label">
                       Башня
@@ -139,9 +173,9 @@ const MeetingForm = () => {
                     </div>
                   </div>
 
-                  <button className="edit-form__button save">
+                  <button className="edit-form__button save" type="submit">
                     <SpriteIcon name="save" width="26" height="26" />
-                    Save
+                    Забронировать
                   </button>
                 </form>
               </section>
@@ -150,28 +184,6 @@ const MeetingForm = () => {
         </div>
       </main>
       <div className="overlay"></div>
-      <div className="modal modal__confirm">
-        <div className="modal__close modal__confirm-close"></div>
-        <div className="modal__inner">
-          <div className="modal__img-wrapper">
-            <img
-              src="./images/icon-delete.svg"
-              alt="delete image"
-              className="modal__img"
-              width="50"
-              height="50"
-            />
-          </div>
-
-          <h6 className="modal__msg">
-            Are you sure you want to&nbsp;delete this appointment?
-          </h6>
-          <div className="modal__btns">
-            <button className="modal__btn no">No</button>
-            <button className="modal__btn yes">Yes</button>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
