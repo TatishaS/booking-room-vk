@@ -51,7 +51,8 @@
     box-shadow: 0 0 0 0.1rem $accentMain;
   }
 
-  &__input-date {
+  &__input-date,
+  &__textarea {
     width: 100%;
     flex-basis: 30rem;
 
@@ -75,7 +76,8 @@
     cursor: pointer;
   }
 
-  &__input-date:focus {
+  &__input-date:focus,
+  &__textarea:focus {
     outline: 0;
     box-shadow: 0 0 0 0.1rem $accentMain;
   }
@@ -156,7 +158,8 @@
   .edit-form {
     max-width: 100%;
 
-    display: flex;
+    //display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 36rem;
@@ -166,7 +169,7 @@
 
     &__row {
       width: 26rem;
-      margin-bottom: 0;
+      //margin-bottom: 0;
       margin-right: 2.4rem;
     }
 

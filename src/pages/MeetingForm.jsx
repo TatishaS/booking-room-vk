@@ -36,6 +36,13 @@ const MeetingForm = () => {
       : "";
   };
 
+  const handleChangeField = (event) => {
+    setEditFormData({
+      ...editFormData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleClearForm = (e) => {
     e.preventDefault();
     setEditFormData({
@@ -58,6 +65,7 @@ const MeetingForm = () => {
 
       try {
         setItems((prev) => [...prev, newItem]);
+        console.log(JSON.stringify(newItem));
       } catch (error) {
         console.error(error);
         alert("ОШИБКА ПРИ ДОБАВЛЕНИИ ДАННЫХ" + error);
@@ -171,6 +179,20 @@ const MeetingForm = () => {
                         className="edit-form__input-date"
                       />
                     </div>
+                  </div>
+                  <div className="edit-form__row">
+                    <label htmlFor="description" className="edit-form__label">
+                      Комментарий
+                    </label>
+                    <textarea
+                      placeholder="Комментарий..."
+                      name="description"
+                      className="edit-form__textarea"
+                      rows={4}
+                      id="description"
+                      value={editFormData.description}
+                      onChange={handleChangeField}
+                    ></textarea>
                   </div>
 
                   <button className="edit-form__button save" type="submit">
