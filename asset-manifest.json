@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/booking-room-vk/static/css/main.53b0188a.css",
+    "main.js": "/booking-room-vk/static/js/main.e9e1faf0.js",
+    "static/media/sprite.svg": "/booking-room-vk/static/media/sprite.1d37cfc8e424a17f4b214f91381fbf38.svg",
+    "index.html": "/booking-room-vk/index.html",
+    "static/media/icon-edit.svg": "/booking-room-vk/static/media/icon-edit.a49397c8774a17da1b4b2214283c04cc.svg",
+    "static/media/icon-close.svg": "/booking-room-vk/static/media/icon-close.97fb26f0f2f0856770b7.svg",
+    "static/media/icon-select-arrow.svg": "/booking-room-vk/static/media/icon-select-arrow.2ea2ae0334c1da2d886b7e93e48c2935.svg",
+    "main.53b0188a.css.map": "/booking-room-vk/static/css/main.53b0188a.css.map",
+    "main.e9e1faf0.js.map": "/booking-room-vk/static/js/main.e9e1faf0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.53b0188a.css",
+    "static/js/main.e9e1faf0.js"
+  ]
+}
