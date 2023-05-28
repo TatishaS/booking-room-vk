@@ -7,7 +7,6 @@ import { selectFloorOptions } from "../utils/SelectFloorOptions";
 import { selectRoomOptions } from "../utils/SelectRoomOptions";
 import { formatDate } from "../utils/date";
 import SpriteIcon from "../components/SpriteIcon";
-import iconEdit from "../images/icon-edit.svg";
 import { ReactComponent as IconSelectArrow } from "../images/icon-select-arrow.svg";
 
 const DropdownIndicator = (props) => {
@@ -120,13 +119,6 @@ const MeetingForm = () => {
                   <h2 className="meeting__form-title">
                     Бронирование переговорных
                   </h2>
-                  <img
-                    className="meeting__title-img"
-                    src={iconEdit}
-                    alt="edit row"
-                    width="26"
-                    height="26"
-                  />
                 </div>
               </div>
 
