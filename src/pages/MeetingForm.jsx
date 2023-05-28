@@ -1,11 +1,14 @@
 import React from "react";
-import Select, { components, DropdownIndicatorProps } from "react-select";
+import ReactCalendar from "../components/Dashboard/ReactCalendar/ReactCalendar";
+import TimeRangePicker from "@wojtekmaj/react-timerange-picker";
+import Select, { components } from "react-select";
+import { selectTowerOptions } from "../utils/SelectTowerOptions";
+import { selectFloorOptions } from "../utils/SelectFloorOptions";
+import { selectRoomOptions } from "../utils/SelectRoomOptions";
+import { formatDate } from "../utils/date";
 import SpriteIcon from "../components/SpriteIcon";
 import iconEdit from "../images/icon-edit.svg";
 import { ReactComponent as IconSelectArrow } from "../images/icon-select-arrow.svg";
-
-import { selectTowerOptions } from "../utils/SelectTowerOptions";
-import { selectFloorOptions } from "../utils/SelectFloorOptions";
 
 const DropdownIndicator = (props) => {
   return (
@@ -15,25 +18,32 @@ const DropdownIndicator = (props) => {
   );
 };
 
-const bookingItems = [];
-
 const MeetingForm = () => {
   const [editFormData, setEditFormData] = React.useState({
     tower: "",
     floor: "",
+    room: "",
+    date: "",
+    timeRange: ["10:00", "11:00"],
     description: "",
   });
   const [items, setItems] = React.useState([]);
 
+  const { tower, floor, room, date, timeRange, description } = editFormData;
+
   const getSelectTowerValue = () => {
-    return editFormData.tower
-      ? selectTowerOptions.find((tower) => tower.value === editFormData.tower)
+    return tower
+      ? selectTowerOptions.find((tower) => tower.value === tower)
       : "";
   };
   const getSelectFloorValue = () => {
-    return editFormData.floor
-      ? selectFloorOptions.find((floor) => floor.value === editFormData.floor)
+    return floor
+      ? selectFloorOptions.find((floor) => floor.value === floor)
       : "";
+  };
+
+  const getSelectRoomValue = () => {
+    return room ? selectRoomOptions.find((room) => room.value === room) : "";
   };
 
   const handleChangeField = (event) => {
@@ -43,11 +53,21 @@ const MeetingForm = () => {
     });
   };
 
+  const handleSelectDate = (date) => {
+    setEditFormData({
+      ...editFormData,
+      date: formatDate(date),
+    });
+  };
+
   const handleClearForm = (e) => {
     e.preventDefault();
     setEditFormData({
       tower: "",
       floor: "",
+      room: "",
+      date: "",
+      timeRange: ["10:00", "11:00"],
       description: "",
     });
   };
@@ -55,29 +75,36 @@ const MeetingForm = () => {
   const handleClickAddBooking = (event) => {
     event.preventDefault();
 
-    if (editFormData.tower && editFormData.floor) {
+    if (tower && floor && room && date && timeRange) {
       const newItem = {
         id: items.length + 1,
-        tower: editFormData.tower,
-        floor: editFormData.floor,
-        description: editFormData.description,
+        tower,
+        floor,
+        room,
+        date,
+        timeRange,
+        description,
       };
 
       try {
         setItems((prev) => [...prev, newItem]);
         console.log(JSON.stringify(newItem));
+        alert("Вы успешно заняли переговорную!");
       } catch (error) {
         console.error(error);
-        alert("ОШИБКА ПРИ ДОБАВЛЕНИИ ДАННЫХ" + error);
+        alert("Проверьте заполнение обязательных полей (со *)" + error);
       }
 
       setEditFormData({
         id: 0,
         tower: "",
         floor: "",
+        date: "",
+        timeRange: ["10:00", "11:00"],
         description: "",
       });
     } else {
+      console.log({ tower, floor, room, date, timeRange });
       alert("Заполните все поля");
     }
   };
@@ -115,7 +142,7 @@ const MeetingForm = () => {
                   </div>
                   <div className="edit-form__row">
                     <label htmlFor="tower" className="edit-form__label">
-                      Башня
+                      Башня*
                     </label>
 
                     <Select
@@ -136,7 +163,7 @@ const MeetingForm = () => {
                   </div>
                   <div className="edit-form__row">
                     <label htmlFor="floor" className="edit-form__label">
-                      Этаж
+                      Этаж*
                     </label>
                     <Select
                       className="edit-form__select"
@@ -155,34 +182,49 @@ const MeetingForm = () => {
                     />
                   </div>
                   <div className="edit-form__row">
-                    <label htmlFor="date" className="edit-form__label">
-                      Date
+                    <label htmlFor="floor" className="edit-form__label">
+                      Переговорная*
                     </label>
-                    <div className="edit-form__select-dropdown">
-                      <input
-                        type="date"
-                        id="date"
-                        value="2021-12-21"
-                        className="edit-form__input-date"
-                      />
-                    </div>
+                    <Select
+                      className="edit-form__select"
+                      classNamePrefix="custom-select"
+                      options={selectRoomOptions}
+                      placeholder="Выберите переговорную"
+                      name="room"
+                      value={getSelectRoomValue()}
+                      onChange={(newValue) =>
+                        setEditFormData({
+                          ...editFormData,
+                          room: newValue.value,
+                        })
+                      }
+                      components={{ DropdownIndicator }}
+                    />
                   </div>
                   <div className="edit-form__row">
-                    <label htmlFor="time" className="edit-form__label">
-                      Time
+                    <label htmlFor="date" className="edit-form__label">
+                      Дата*
                     </label>
-                    <div className="edit-form__select-dropdown">
-                      <input
-                        type="date"
-                        id="time"
-                        value="2021-12-21"
-                        className="edit-form__input-date"
-                      />
-                    </div>
+                    <ReactCalendar onChangeDay={handleSelectDate} />
+                  </div>
+
+                  <div className="edit-form__row">
+                    <label htmlFor="time" className="edit-form__label">
+                      Время (интервал)*
+                    </label>
+                    <TimeRangePicker
+                      onChange={(newValue) =>
+                        setEditFormData({
+                          ...editFormData,
+                          timeRange: newValue,
+                        })
+                      }
+                      value={timeRange}
+                    />
                   </div>
                   <div className="edit-form__row">
                     <label htmlFor="description" className="edit-form__label">
-                      Комментарий
+                      Мини-комментарий
                     </label>
                     <textarea
                       placeholder="Комментарий..."
@@ -190,7 +232,7 @@ const MeetingForm = () => {
                       className="edit-form__textarea"
                       rows={4}
                       id="description"
-                      value={editFormData.description}
+                      value={description}
                       onChange={handleChangeField}
                     ></textarea>
                   </div>

@@ -58,7 +58,7 @@
 
     flex-shrink: 0;
 
-    color: $contentSecondary;
+    color: $contentMain;
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 1.6rem;
@@ -73,10 +73,14 @@
     -moz-appearance: none;
     -ms-appearance: none;
     appearance: none; */
+    resize: none;
     cursor: pointer;
+
+    &::placeholder {
+      color: $contentSecondary;
+    }
   }
 
-  &__input-date:focus,
   &__textarea:focus {
     outline: 0;
     box-shadow: 0 0 0 0.1rem $accentMain;
@@ -168,7 +172,7 @@
     }
 
     &__row {
-      width: 26rem;
+      //width: 26rem;
       //margin-bottom: 0;
       margin-right: 2.4rem;
     }
