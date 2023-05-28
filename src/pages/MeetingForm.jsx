@@ -30,19 +30,8 @@ const MeetingForm = () => {
 
   const { tower, floor, room, date, timeRange, description } = editFormData;
 
-  const getSelectTowerValue = () => {
-    return tower
-      ? selectTowerOptions.find((tower) => tower.value === tower)
-      : "";
-  };
-  const getSelectFloorValue = () => {
-    return floor
-      ? selectFloorOptions.find((floor) => floor.value === floor)
-      : "";
-  };
-
-  const getSelectRoomValue = () => {
-    return room ? selectRoomOptions.find((room) => room.value === room) : "";
+  const getSelectValue = (param, options) => {
+    return param ? options.find((option) => option.value === param) : "";
   };
 
   const handleChangeField = (event) => {
@@ -104,7 +93,7 @@ const MeetingForm = () => {
       });
     } else {
       console.log({ tower, floor, room, date, timeRange });
-      alert("Заполните все поля");
+      alert("Заполните все поля со звездочкой *");
     }
   };
 
@@ -143,7 +132,7 @@ const MeetingForm = () => {
                       options={selectTowerOptions}
                       placeholder="Выберите башню"
                       name="tower"
-                      value={getSelectTowerValue()}
+                      value={getSelectValue(tower, selectTowerOptions)}
                       onChange={(newValue) =>
                         setEditFormData({
                           ...editFormData,
@@ -163,7 +152,7 @@ const MeetingForm = () => {
                       options={selectFloorOptions}
                       placeholder="Выберите этаж"
                       name="floor"
-                      value={getSelectFloorValue()}
+                      value={getSelectValue(floor, selectFloorOptions)}
                       onChange={(newValue) =>
                         setEditFormData({
                           ...editFormData,
@@ -183,7 +172,7 @@ const MeetingForm = () => {
                       options={selectRoomOptions}
                       placeholder="Выберите переговорную"
                       name="room"
-                      value={getSelectRoomValue()}
+                      value={getSelectValue(room, selectRoomOptions)}
                       onChange={(newValue) =>
                         setEditFormData({
                           ...editFormData,
